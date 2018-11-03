@@ -1,0 +1,47 @@
+@import './../../themes/theme.scss';
+
+.tabbed-view {
+	background-color: yellow;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+
+	.tabs {
+		display: flex;
+		background-color: $tabsBackgroundColor;
+
+		.tab {
+			position: relative;
+			padding: 8px;
+			&:after {
+				content: '';
+				position: absolute;
+				background-color: $activeTabColor;
+				transition: right 100ms ease-in;
+				right: 100%;
+			}
+
+			&.active:after {
+				height: 4px;
+				bottom: 0;
+				left: 4px;
+				right: 4px;
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	.view {
+		flex: 1 1 100%;
+		background-color: cyan;
+		display: flex;
+
+		& > * {
+			flex: 1 1 100%;
+			padding: 8px;
+		}
+	}
+}

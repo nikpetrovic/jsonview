@@ -1,0 +1,36 @@
+.side-menu-layout {
+  display: flex;
+  height: 100vh;
+
+  .side-menu {
+    transition: margin-left ease-in-out 200ms;
+    overflow-y: auto;
+
+    &.enter {
+      margin-left: unset;
+    }
+  }
+
+  .main-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    transition: width ease-in-out 200ms;
+
+    .header {
+      height: 50px;
+      background-color: cyan;
+    }
+
+    .body {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .footer {
+      height: 50px;
+      background-color: red;
+      color: white;
+    }
+  }
+}
