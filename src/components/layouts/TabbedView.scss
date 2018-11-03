@@ -9,6 +9,7 @@
 	.tabs {
 		display: flex;
 		background-color: $tabsBackgroundColor;
+		border-bottom: 1px solid gray;
 
 		.tab {
 			position: relative;
@@ -42,6 +43,9 @@
 		& > * {
 			flex: 1 1 100%;
 			padding: 8px;
+			border: none;
+			outline: none;
+			resize: none;
 		}
 	}
 }

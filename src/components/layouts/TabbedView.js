@@ -1,6 +1,7 @@
 import React from 'react'
 import types from 'prop-types'
 import './TabbedView.scss'
+import debounce from 'lodash/debounce'
 
 export default class TabbedView extends React.Component {
 	static propTypes = {}
@@ -9,6 +10,12 @@ export default class TabbedView extends React.Component {
 
 	constructor(props) {
 		super(props)
+
+		// this.handleJsonChange = debounce(this.handleJsonChange, 250)
+	}
+
+	handleJsonChange = e => {
+		console.log(e.target.value)
 	}
 
 	onTabClick = e => {
@@ -18,7 +25,7 @@ export default class TabbedView extends React.Component {
 	render() {
 		const { tabs } = this.props
 		const { activeTab } = this.state
-		const activeTabObj = tabs.find(t => t.name === activeTab)
+		const activeTabObj = tabs.find(t => t === activeTab)
 		const component = activeTabObj && activeTabObj.component
 
 		if (!tabs) {
@@ -30,27 +37,30 @@ export default class TabbedView extends React.Component {
 				<div className="tabs">
 					{tabs.map(t => (
 						<div
-							key={t.name}
-							id={t.name}
-							className={`tab${t.name === activeTab ? ' active' : ''}`}
+							key={t}
+							id={t}
+							className={`tab${t === activeTab ? ' active' : ''}`}
 							onClick={this.onTabClick}
 						>
-							{t.name}
+							{t}
 						</div>
 					))}
 				</div>
 				<div className="view">
-					{component && React.createElement(component)}
+					{activeTab === 'JSON' ? (
+						<textarea placeholder="Put JSON aobject here..." onKeyPress={this.handleJsonChange}/>
+					) : null}
+					{activeTab === 'VIEW' ? <h1>json goes here</h1> : null}
 				</div>
 			</div>
 		)
 	}
 
 	componentDidMount() {
-		this.setState({ activeTab: this.props.tabs && this.props.tabs[0].name })
+		this.setState({ activeTab: this.props.tabs && this.props.tabs[0] })
 	}
 }
 
 TabbedView.defaultProps = {
-	tabs: [{ name: 'JSON', component: 'textarea' }, { name: 'VIEW', component: 'div' }],
+	tabs: ['JSON', 'VIEW'],
 }
