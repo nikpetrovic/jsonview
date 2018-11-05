@@ -1,0 +1,12 @@
+{
+	"id": 1,
+	"firstName": "Nikola",
+	"lastName": "Petrovic",
+	"address": {
+		"street": "Djordja Stanojevica",
+		"number": "9g",
+		"city": "Belgrade",
+		"zip": "11000"
+	},
+	"phone": [{ "phone1": "9283053350" }, { "phone2": "" }]
+}

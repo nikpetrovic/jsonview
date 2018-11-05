@@ -2,6 +2,9 @@ import React from 'react'
 import types from 'prop-types'
 import './TabbedView.scss'
 import debounce from 'lodash/debounce'
+import Tree from '../Tree'
+
+import data from '../../mock-data/test1.json'
 
 export default class TabbedView extends React.Component {
 	static propTypes = {}
@@ -11,11 +14,22 @@ export default class TabbedView extends React.Component {
 	constructor(props) {
 		super(props)
 
-		// this.handleJsonChange = debounce(this.handleJsonChange, 250)
+		this.handleJsonChange = debounce(this.handleJsonChange, 500)
 	}
 
-	handleJsonChange = e => {
-		console.log(e.target.value)
+	handleJsonChange = jsonString => {
+		console.log('json string:', jsonString)
+		try {
+			const json = JSON.parse(jsonString)
+			console.log('valid json:', json)
+		} catch (e) {
+			console.error('Invalid JSON object.')
+			console.error(e)
+		}
+	}
+
+	onJsonChange = e => {
+		this.handleJsonChange(e.target.value)
 	}
 
 	onTabClick = e => {
@@ -48,16 +62,19 @@ export default class TabbedView extends React.Component {
 				</div>
 				<div className="view">
 					{activeTab === 'JSON' ? (
-						<textarea placeholder="Put JSON aobject here..." onKeyPress={this.handleJsonChange}/>
+						<textarea
+							placeholder="Put JSON aobject here..."
+							onChange={this.onJsonChange}
+						/>
 					) : null}
-					{activeTab === 'VIEW' ? <h1>json goes here</h1> : null}
+					{activeTab === 'VIEW' ? <Tree data={data} /> : null}
 				</div>
 			</div>
 		)
 	}
 
 	componentDidMount() {
-		this.setState({ activeTab: this.props.tabs && this.props.tabs[0] })
+		this.setState({ activeTab: this.props.tabs && this.props.tabs[1] })
 	}
 }
 
