@@ -1,0 +1,25 @@
+.tree-node {
+	display: flex;
+
+	.name {
+		padding: 0 4px;
+		display: flex;
+	}
+
+	.value {
+		padding: 0 4px;
+		display: flex;
+		flex-direction: column;
+
+		&.complex {
+			display: flex;
+			flex-direction: column;
+			margin-left: 1rem;
+		}
+	}
+
+	&.complex {
+		display: flex;
+		flex-direction: column;
+	}
+}

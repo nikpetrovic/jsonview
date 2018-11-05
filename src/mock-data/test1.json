@@ -8,5 +8,21 @@
 		"city": "Belgrade",
 		"zip": "11000"
 	},
-	"phone": [{ "phone1": "9283053350" }, { "phone2": "" }]
+	"phone": [{ "phone1": "9283053350" }, { "phone2": "" }],
+	"family": [
+		{
+			"uncle": {
+				"id": 2,
+				"firstName": "Uncle First",
+				"lastName": "Uncle Last"
+			}
+		},
+		{
+			"aunt": {
+				"id": 3,
+				"firstName": "Aunt First",
+				"lastName": "Aunt Last"
+			}
+		}
+	]
 }
